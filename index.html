@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Password Guard - a privacy-first password strength checker that analyzes passwords locally in your browser.">
+    <title>Password Guard | Password Strength Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-shell">
+        <section class="card" aria-labelledby="app-title">
+            <header class="hero">
+                <div class="brand-mark" aria-hidden="true">🔐</div>
+                <div>
+                    <p class="eyebrow">PRIVACY-FIRST SECURITY TOOL</p>
+                    <h1 id="app-title">Password Guard</h1>
+                    <p class="subtitle">Analyze your password strength securely and privately.</p>
+                </div>
+            </header>
+
+            <section class="input-section" aria-label="Password input">
+                <div class="section-heading">
+                    <label for="password">Enter your password</label>
+                    <span id="lengthLabel">0 characters</span>
+                </div>
+
+                <div class="password-box">
+                    <input
+                        id="password"
+                        type="password"
+                        autocomplete="new-password"
+                        spellcheck="false"
+                        placeholder="Type a password to begin..."
+                        aria-describedby="privacyNote"
+                    >
+                    <button id="togglePassword" class="icon-button" type="button" aria-label="Show password">👁</button>
+                    <button id="clearPassword" class="icon-button" type="button" aria-label="Clear password">×</button>
+                </div>
+                <div class="generator-panel">
+
+    <div class="generator-header">
+        <div>
+            <strong>Secure Password Generator</strong>
+            <p>Create a strong password using secure browser randomness.</p>
+        </div>
+        <span class="generator-icon">⚡</span>
+    </div>
+
+    <div class="length-control">
+        <div class="control-label">
+            <span>Password length</span>
+            <strong id="generatorLengthValue">16</strong>
+        </div>
+
+        <input
+            id="generatorLength"
+            type="range"
+            min="8"
+            max="32"
+            value="16"
+        >
+    </div>
+
+    <div class="character-options">
+
+        <label class="option">
+            <input type="checkbox" id="useUppercase" checked>
+            <span>Uppercase</span>
+        </label>
+
+        <label class="option">
+            <input type="checkbox" id="useLowercase" checked>
+            <span>Lowercase</span>
+        </label>
+
+        <label class="option">
+            <input type="checkbox" id="useNumbers" checked>
+            <span>Numbers</span>
+        </label>
+
+        <label class="option">
+            <input type="checkbox" id="useSymbols" checked>
+            <span>Symbols</span>
+        </label>
+
+    </div>
+
+    <div class="generator-actions">
+
+        <button
+            id="generatePassword"
+            class="generate-button"
+            type="button"
+        >
+            ⚡ Generate Strong Password
+        </button>
+
+        <button
+            id="copyPassword"
+            class="copy-button"
+            type="button"
+            aria-label="Copy generated password"
+        >
+            📋 Copy
+        </button>
+
+    </div>
+
+    <p id="generatorMessage" class="generator-message" aria-live="polite"></p>
+
+</div>
+
+                <div class="meter-wrap" aria-live="polite">
+                    <div class="meter-top">
+                        <span>Password strength</span>
+                        <strong id="strengthText">Waiting for input</strong>
+                    </div>
+                    <div class="meter" aria-hidden="true">
+                        <div id="strengthProgress" class="meter-progress"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stats-grid" aria-label="Password statistics">
+                <div class="stat-card">
+                    <span>Security score</span>
+                    <strong id="score">0<span>/100</span></strong>
+                </div>
+                <div class="stat-card">
+                    <span>Password length</span>
+                    <strong id="passwordLength">0</strong>
+                </div>
+                <div class="stat-card">
+                    <span>Estimated entropy</span>
+                    <strong id="entropy">0 <small>bits</small></strong>
+                </div>
+            </section>
+
+            <section class="requirements" aria-labelledby="requirementsTitle">
+                <div class="section-heading">
+                    <h2 id="requirementsTitle">Security requirements</h2>
+                    <span id="passedCount">0/5 passed</span>
+                </div>
+
+                <div class="requirement-list">
+                    <div class="requirement" id="lengthRequirement">
+                        <span class="status-icon" aria-hidden="true">○</span>
+                        <span>At least 8 characters</span>
+                    </div>
+                    <div class="requirement" id="uppercaseRequirement">
+                        <span class="status-icon" aria-hidden="true">○</span>
+                        <span>One uppercase letter</span>
+                    </div>
+                    <div class="requirement" id="lowercaseRequirement">
+                        <span class="status-icon" aria-hidden="true">○</span>
+                        <span>One lowercase letter</span>
+                    </div>
+                    <div class="requirement" id="numberRequirement">
+                        <span class="status-icon" aria-hidden="true">○</span>
+                        <span>One number</span>
+                    </div>
+                    <div class="requirement" id="specialRequirement">
+                        <span class="status-icon" aria-hidden="true">○</span>
+                        <span>One special character</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="warning" class="message warning hidden" role="status">
+                <span>⚠</span>
+                <div>
+                    <strong>Common pattern detected</strong>
+                    <p id="warningText"></p>
+                </div>
+            </section>
+
+            <section class="tip-card" aria-live="polite">
+                <span class="tip-icon" aria-hidden="true">💡</span>
+                <div>
+                    <strong>Security recommendation</strong>
+                    <p id="tipText">Use a long, unique passphrase with a mix of character types.</p>
+                </div>
+            </section>
+
+            <section class="privacy-note" id="privacyNote">
+                <span aria-hidden="true">🛡️</span>
+                <p><strong>Privacy first.</strong> Your password is analyzed locally in this browser. It is never stored or transmitted.</p>
+            </section>
+
+            <footer>
+                <span>Password Guard</span>
+                <span>Client-side analysis</span>
+            </footer>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
