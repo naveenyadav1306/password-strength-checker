@@ -8,7 +8,11 @@ Password Guard analyzes password strength in real time and provides security rec
 
 ## 🌐 Live Demo
 
-> Coming soon — deployment will be added after the GitHub setup is complete.
+
+🚀 **Live Demo:** https://naveenyadav1306.github.io/password-strength-checker/
+## 📸 Project Preview
+
+![Password Guard Preview](password-guard-demo.png)
 
 ---
 
